@@ -7,25 +7,25 @@ import TypeInput from './type_input'
 import TypeCallback from './type_callback'
 import Steps from './steps'
 
-export default function QuestionContainer({storeData, setPrevQuestion, question, currentQuestionNumber, fullLength }) {
+export default function QuestionContainer(props) {
 
     let questionType;
 
-    switch(question.type) {
+    switch(props.question.type) {
         default:
-            questionType = <TypeRadio key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+            questionType = <TypeRadio {...props}/>;
             break;
         case 'radio':
-             questionType = <TypeRadio key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeRadio {...props}/>;
              break;
         case 'rating':
-             questionType = <TypeRating key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeRating {...props}/>;
             break;
         case 'input':
-             questionType = <TypeInput key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeInput {...props}/>;
             break;
         case 'callback':
-             questionType = <TypeCallback key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeCallback {...props}/>;
             break;
     }
 
@@ -36,7 +36,7 @@ export default function QuestionContainer({storeData, setPrevQuestion, question,
                 {questionType}
 
             </View>
-            <Steps style={styles.steps} fullLength={fullLength} currentQuestionNumber={currentQuestionNumber}/>
+            <Steps {...props}/>
         </View>
     )
 }
